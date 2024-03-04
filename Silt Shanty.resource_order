@@ -19,7 +19,11 @@
   "ResourceOrderSettings": [
     {"name":"spr_flyer_death","order":4,"path":"sprites/spr_flyer_death/spr_flyer_death.yy",},
     {"name":"spr_flyer_fire","order":3,"path":"sprites/spr_flyer_fire/spr_flyer_fire.yy",},
+    {"name":"spr_player_fall","order":12,"path":"sprites/spr_player_fall/spr_player_fall.yy",},
+    {"name":"spr_player_run","order":10,"path":"sprites/spr_player_run/spr_player_run.yy",},
+    {"name":"spr_player_jump","order":11,"path":"sprites/spr_player_jump/spr_player_jump.yy",},
     {"name":"spr_crawler_crawl","order":5,"path":"sprites/spr_crawler_crawl/spr_crawler_crawl.yy",},
+    {"name":"spr_player_land","order":13,"path":"sprites/spr_player_land/spr_player_land.yy",},
     {"name":"spr_flyer_fly","order":2,"path":"sprites/spr_flyer_fly/spr_flyer_fly.yy",},
   ],
 }

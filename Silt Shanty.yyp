@@ -36,9 +36,13 @@
   "resources": [
     {"id":{"name":"spr_flyer_death","path":"sprites/spr_flyer_death/spr_flyer_death.yy",},},
     {"id":{"name":"spr_flyer_fire","path":"sprites/spr_flyer_fire/spr_flyer_fire.yy",},},
+    {"id":{"name":"spr_player_fall","path":"sprites/spr_player_fall/spr_player_fall.yy",},},
+    {"id":{"name":"spr_player_run","path":"sprites/spr_player_run/spr_player_run.yy",},},
+    {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},},
     {"id":{"name":"animation_end","path":"scripts/animation_end/animation_end.yy",},},
     {"id":{"name":"obj_flyer","path":"objects/obj_flyer/obj_flyer.yy",},},
     {"id":{"name":"spr_crawler_crawl","path":"sprites/spr_crawler_crawl/spr_crawler_crawl.yy",},},
+    {"id":{"name":"spr_player_land","path":"sprites/spr_player_land/spr_player_land.yy",},},
     {"id":{"name":"spr_flyer_fly","path":"sprites/spr_flyer_fly/spr_flyer_fly.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
