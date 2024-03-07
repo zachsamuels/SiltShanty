@@ -3,7 +3,11 @@
 
 
 
-
+if (invulnerable and not start_vul) {
+	start_vul = true;
+	image_alpha = .8
+	alarm[1] = game_get_speed(gamespeed_fps) * 2;
+}
 
 
 var keyleft = keyboard_check(vk_left);

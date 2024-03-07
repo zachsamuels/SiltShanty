@@ -14,5 +14,7 @@ landing = false;
 idle = false;
 running = false;
 falling = false;
+invulnerable = false;
+start_vul = false;
 
 //sprite_collision_mask(spr_player_run, false, 2)

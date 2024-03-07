@@ -3,6 +3,5 @@
 
 
 
-dmg = 0;
-
-
+other.hp -= dmg;
+other.invulnerable = true;

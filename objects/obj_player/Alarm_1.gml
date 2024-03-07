@@ -3,6 +3,7 @@
 
 
 
-dmg = 0;
 
-
+invulnerable = false;
+start_vul = false;
+image_alpha = 1;
