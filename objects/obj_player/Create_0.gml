@@ -4,7 +4,7 @@
 
 
 hp = 3;
-spd = 4;
+spd = 6;
 dmg = 1;
 hsp = 0;
 vsp = 0;
@@ -14,3 +14,5 @@ landing = false;
 idle = false;
 running = false;
 falling = false;
+
+//sprite_collision_mask(spr_player_run, false, 2)

@@ -17,7 +17,7 @@ if (moving != 0) {
 	image_xscale = moving;
 } else {
 	if (not jumping and grounded) {
-		sprite_index = spr_player_blush;
+		sprite_index = spr_player_idle;
 	}
 }
 
@@ -41,10 +41,10 @@ if (place_meeting(x, y + vsp, obj_block)) {
 	}
 	vsp = 0;
 	grounded = true
-	falling = false;
-	if (not landing) {
+	if (not landing and falling) {
+		falling = false;
 		landing = true;
-		sprite_index = spr_player_land;
+		sprite_index = spr_player_land;	
 		image_index = 0;
 		}
 } else {

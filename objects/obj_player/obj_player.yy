@@ -30,8 +30,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_player_blush",
-    "path": "sprites/spr_player_blush/spr_player_blush.yy",
+    "name": "spr_player_idle",
+    "path": "sprites/spr_player_idle/spr_player_idle.yy",
   },
   "spriteMaskId": null,
   "visible": true,
