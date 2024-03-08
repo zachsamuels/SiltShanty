@@ -4,12 +4,10 @@
 
 
 hp = 1;
-dmg = 1;
+dmj = 1;
 dying = false;
 turning = false;
 spd = 1;
 dir = -1;
-
-
-
+dmg = 1;
 
