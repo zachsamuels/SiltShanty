@@ -5,7 +5,9 @@
 
 hp = 1;
 dmg = 1;
+spd = 2;
 firing = false;
 dying = false;
 
-alarm[0] = game_get_speed(gamespeed_fps) * 3;
+//[0] = game_get_speed(gamespeed_fps) * 3;
+path_start(pth_flyer_1, spd, path_action_restart, false);

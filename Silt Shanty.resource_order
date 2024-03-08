@@ -18,6 +18,7 @@
   ],
   "ResourceOrderSettings": [
     {"name":"spr_flyer_death","order":4,"path":"sprites/spr_flyer_death/spr_flyer_death.yy",},
+    {"name":"Sprite16","order":21,"path":"sprites/Sprite16/Sprite16.yy",},
     {"name":"spr_flyer_fire","order":3,"path":"sprites/spr_flyer_fire/spr_flyer_fire.yy",},
     {"name":"spr_block","order":17,"path":"sprites/spr_block/spr_block.yy",},
     {"name":"obj_atk","order":5,"path":"objects/obj_atk/obj_atk.yy",},

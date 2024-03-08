@@ -5,7 +5,7 @@
 
 
 
-if (turning) {
+if (turning and not dying) {
 	if (animation_end()) {
 		sprite_index = spr_crawler_crawl;
 		image_index = 0;
@@ -13,7 +13,7 @@ if (turning) {
 		turning = false;
 		dir = dir * -1 ;
 }
-} else {
+} else if (not dying) {
 	hsp = spd * dir;
 	if (hsp < 0 ) {
 		boxx = bbox_left;
@@ -29,7 +29,13 @@ if (turning) {
 	}
 }
 
-if(hp <= 0){
+if(hp <= 0 and not dying){
+	dying = true;
+	sprite_index = spr_crawler_death;
+	image_index = 0;
+}
+
+if (dying and animation_end()) {
 	instance_destroy(id, true);
 }
 	

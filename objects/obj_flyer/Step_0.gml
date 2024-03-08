@@ -2,6 +2,14 @@
 // You can write your code in this editor
 
 
+var player = instance_find(obj_player, 0);
+
+if (player.x > x) {
+	image_xscale = -1;
+} else {
+	image_xscale = 1;
+}
+
 
 if (firing) {
 	if (animation_end()) {

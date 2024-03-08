@@ -3,5 +3,7 @@
 
 
 
-other.hp -= dmg;
-other.invulnerable = true;
+if (not other.invulnerable) {
+	other.hp -= dmg;
+	other.invulnerable = true;
+}
