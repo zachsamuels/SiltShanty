@@ -12,19 +12,48 @@ if (invulnerable and not start_vul) {
 
 var keyleft = keyboard_check(vk_left);
 var keyright = keyboard_check(vk_right);
+var keyspace = keyboard_check(vk_space);
+var attack;
 
 var moving = keyright - keyleft;
 hsp = spd * moving;
 
+if(!attacking){
 if (moving != 0) {
 	sprite_index = spr_player_run;
 	image_xscale = moving;
+	lastdir = moving;
+	if(keyspace != 0){
+		attacking = true;
+		sprite_index = spr_player_atk;
+		if(-moving < 0){
+			attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+		}
+		else{
+			attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+		}
+		attack.image_xscale = -moving;
+	}
 } else {
-	if (not jumping and grounded) {
+	if(keyspace != 0){
+		attacking = true;
+		sprite_index = spr_player_atk;
+		if(-lastdir < 0){
+			attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+		}
+		else{
+			attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+		}
+		attack.image_xscale = -lastdir;
+		
+	}
+	else if (not jumping and grounded) {
 		sprite_index = spr_player_idle;
 	}
 }
+}
 
+//Make bool variable for attacking and check if atk is at last frame before changing back
 //check for collision with an obj_block
 
 if (place_meeting(x + hsp, y, obj_block)) {
@@ -35,6 +64,9 @@ if (place_meeting(x + hsp, y, obj_block)) {
 	hsp = 0;
 }
 
+if(attacking and animation_end()){
+	attacking = false;
+}
 
 // vert collision
 vsp += .9;
