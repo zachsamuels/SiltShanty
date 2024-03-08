@@ -14,6 +14,8 @@ landing = false;
 idle = false;
 running = false;
 falling = false;
+attacking = false;
+lastdir = 1;
 invulnerable = false;
 start_vul = false;
 
