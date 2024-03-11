@@ -49,6 +49,7 @@ if (dying and animation_end()) {
 		dying = true;
 	}
 
-
+} else {
+	path_speed = 0;
 }
 
