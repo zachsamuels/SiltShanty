@@ -7,3 +7,7 @@ if (not other.invulnerable and not dying) {
 	other.hp -= dmg;
 	other.invulnerable = true;
 }
+
+
+
+
