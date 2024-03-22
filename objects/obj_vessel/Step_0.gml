@@ -67,7 +67,7 @@ if (roaring) {
 
 var player = instance_find(obj_player, 0);
 
-if (x - 50 < player.x or x + 50 > player.x and ready_for_overhead and fighting) {
+if ((x - 275 < player.x and x + 275 > player.x) and ready_for_overhead and fighting) {
 	ready_for_overhead = false;
 	overheading = true;
 	sprite_index = spr_vessel_overhead_start;
