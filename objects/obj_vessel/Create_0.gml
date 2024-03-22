@@ -14,6 +14,9 @@ image_xscale = -1;
 cam_original_x = camera_get_view_x(view_camera[0]);
 cam_original_y = camera_get_view_y(view_camera[0]);
 roaring = false;
-
+ready_for_overhead = true;
+overheading = false;
+overhead_num = 0;
+fighting = false;
 
 

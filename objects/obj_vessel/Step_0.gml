@@ -53,6 +53,7 @@ if (roaring) {
 	    camera_set_view_pos(view_camera[0], cam_original_x, cam_original_y);
 		global.freeze_game = false;
 		global.boss_fight = true;
+		fighting = true;
 		global.boss = "vessel";
 		camera_set_view_border(cam, 0, 0)
 		sprite_index = spr_vessel_idle;
@@ -64,3 +65,47 @@ if (roaring) {
 	
 
 
+var player = instance_find(obj_player, 0);
+
+if (x - 50 < player.x or x + 50 > player.x and ready_for_overhead and fighting) {
+	ready_for_overhead = false;
+	overheading = true;
+	sprite_index = spr_vessel_overhead_start;
+	image_index = 0;
+}
+
+if (sprite_index == spr_vessel_overhead_start and animation_end()) {
+	sprite_index = spr_vessel_overhead;
+	image_index = 0;
+	var overhead = instance_create_layer(x, y, "Instances", obj_overhead);
+}
+
+if (sprite_index == spr_vessel_overhead) {
+	if (image_index == 3 or image_index = 4) {
+		instance_find(obj_overhead, 0).image_index = 2;
+		image_alpha = 0;
+	}
+	else if (image_index == 8 or image_index = 9) {
+		instance_find(obj_overhead, 0).image_index = 5;
+		image_alpha = 0;
+	} else {
+		image_alpha = 1;
+	}
+}
+
+if (sprite_index == spr_vessel_overhead and animation_end()) {
+	if (overhead_num < 3) {
+		overhead_num += 1;
+	}
+	else {
+		sprite_index = spr_vessel_overhead_end;
+		image_index = 0;
+		overhead_num = 0;
+		instance_destroy(instance_find(obj_overhead, 0), false);
+	}
+} 
+
+if (sprite_index == spr_vessel_overhead_end and animation_end()) {
+	sprite_index = spr_vessel_idle;
+	alarm[0] = game_get_speed(gamespeed_fps) * 10;
+}
