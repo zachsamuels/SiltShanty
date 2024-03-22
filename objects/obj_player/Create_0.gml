@@ -3,6 +3,9 @@
 
 
 
+global.freeze_game = false;
+global.boss_fight = true;
+global.boss = "";
 hp = 3;
 spd = 6;
 dmg = 1;
