@@ -2,6 +2,10 @@
 // You can write your code in this editor
 
 
+if (invulnerable and not start_vul) {
+	start_vul = true;
+	alarm[1] = game_get_speed(gamespeed_fps) * 2;
+}
 
 var cam = view_camera[0];
 var cam_x = camera_get_view_x(cam);
@@ -67,6 +71,8 @@ if (roaring) {
 
 var player = instance_find(obj_player, 0);
 
+
+//player is close, so overhead (all overhead logic below)
 if ((x - 275 < player.x and x + 275 > player.x) and ready_for_overhead and fighting) {
 	ready_for_overhead = false;
 	overheading = true;
@@ -109,3 +115,48 @@ if (sprite_index == spr_vessel_overhead_end and animation_end()) {
 	sprite_index = spr_vessel_idle;
 	alarm[0] = game_get_speed(gamespeed_fps) * 10;
 }
+
+
+//player is too far, so jump attack (all jump attack logic below)
+
+if ((x - 800 > player.x and x + 800 < player.x) and ready_for_jump and fighting) {
+	ready_for_overhead = false;
+	ready_for_jump =  false
+	sprite_index = spr_vessel_jump_start;
+	image_index = 0;
+}
+
+
+if (sprite_index == spr_vessel_jump_start and animation_end()) {
+	sprite_index = spr_vessel_jump;
+	image_index = 0;
+	vsp = -30;
+}
+
+vsp += .9;
+if (y + vsp > original_y) {
+	// Im going to hit the block so move to block
+	while (not y + sign(vsp) >= original_y) {
+		y += sign(vsp);
+	}
+}
+
+if (sprite_index == spr_vessel_jump and animation_end()) {
+	sprite_index = spr_vessel_downstab_start;
+	image_index = 0;
+}
+
+if (sprite_index == spr_vessel_downstab_start and animation_end()) {
+	image_speed = 0;
+	image_index = 6;
+}
+
+if (sprite_index = spr_vessel_downstab_start and y + vsp >= original_y) {
+	image_speed = 1;
+	sprite_index = spr_vessel_downstab_start;
+	image_index = 0;
+	var downstab = instance_create_layer(x, y, "Instances", obj_downstab);
+}
+
+x += hsp;
+y += vsp;

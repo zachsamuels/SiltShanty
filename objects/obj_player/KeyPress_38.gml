@@ -9,5 +9,6 @@ if (grounded and not global.freeze_game) {
 	sprite_index = spr_player_jump;
 	image_index = 0;
 	jumping = true;
+	audio_play_sound(snd_jump	, 10, false);
 }
 
