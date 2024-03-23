@@ -119,7 +119,7 @@ if (sprite_index == spr_vessel_overhead_end and animation_end()) {
 
 //player is too far, so jump attack (all jump attack logic below)
 
-if ((x - 800 > player.x and x + 800 < player.x) and ready_for_jump and fighting) {
+if ((x - 600 > player.x or x + 600 < player.x) and ready_for_jump and fighting) {
 	ready_for_overhead = false;
 	ready_for_jump =  false
 	sprite_index = spr_vessel_jump_start;
@@ -131,14 +131,27 @@ if (sprite_index == spr_vessel_jump_start and animation_end()) {
 	sprite_index = spr_vessel_jump;
 	image_index = 0;
 	vsp = -30;
+	if (player.x - x > 0) {
+		hsp = 40;
+	} else {
+		hsp = -40;
+	}
+}
+
+if (abs(hsp) > 1 and (x > 1190 and x < 2200)) {
+	hsp -= .9 * sign(hsp);
+} else {
+	hsp = 0;
 }
 
 vsp += .9;
+
 if (y + vsp > original_y) {
 	// Im going to hit the block so move to block
 	while (not y + sign(vsp) >= original_y) {
 		y += sign(vsp);
 	}
+	vsp = 0;
 }
 
 if (sprite_index == spr_vessel_jump and animation_end()) {
@@ -147,15 +160,24 @@ if (sprite_index == spr_vessel_jump and animation_end()) {
 }
 
 if (sprite_index == spr_vessel_downstab_start and animation_end()) {
-	image_speed = 0;
+	ready_to_land = true;
+}
+
+if (ready_to_land) {
 	image_index = 6;
 }
 
-if (sprite_index = spr_vessel_downstab_start and y + vsp >= original_y) {
-	image_speed = 1;
-	sprite_index = spr_vessel_downstab_start;
+if (ready_to_land and y + 30 >= original_y) {
+	ready_to_land = false;
+	sprite_index = spr_vessel_downstab;
 	image_index = 0;
 	var downstab = instance_create_layer(x, y, "Instances", obj_downstab);
+}
+
+if (sprite_index == spr_vessel_downstab and animation_end()) {
+	sprite_index = spr_vessel_idle;
+	image_index = 0;
+	alarm[2] = game_get_speed(gamespeed_fps) * 10;
 }
 
 x += hsp;

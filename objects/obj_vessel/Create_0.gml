@@ -25,4 +25,5 @@ ready_for_jump = true;
 jumping = false;
 invulnerable = false;
 start_vul = false;
+ready_to_land = false;
 
