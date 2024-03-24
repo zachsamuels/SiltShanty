@@ -4,7 +4,7 @@
 
 
 
-spd = 3;
+spd = 2;
 hsp = 0;
 vsp = 0
 hp = 30;

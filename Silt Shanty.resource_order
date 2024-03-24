@@ -63,5 +63,6 @@
     {"name":"spr_vessel_wake_2","order":26,"path":"sprites/spr_vessel_wake_2/spr_vessel_wake_2.yy",},
     {"name":"obj_downstab","order":9,"path":"objects/obj_downstab/obj_downstab.yy",},
     {"name":"obj_crawler","order":2,"path":"objects/obj_crawler/obj_crawler.yy",},
+    {"name":"snd_roar","order":3,"path":"sounds/snd_roar/snd_roar.yy",},
   ],
 }

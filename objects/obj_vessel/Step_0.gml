@@ -26,6 +26,7 @@ if (sprite_index == spr_vessel_wake_1 and animation_end()) {
 }
 
 if (sprite_index == spr_vessel_wake_2 and animation_end()) {
+	audio_play_sound(snd_roar, 10, false);
 	sprite_index = spr_vessel_wake_3;
 	image_index = 0;
 }
@@ -73,7 +74,7 @@ var player = instance_find(obj_player, 0);
 
 
 //player is close, so overhead (all overhead logic below)
-if ((x - 275 < player.x and x + 275 > player.x) and ready_for_overhead and fighting) {
+if ((x - 275 < player.x and x + 275 > player.x) and ready_for_overhead and fighting and not jumping) {
 	ready_for_overhead = false;
 	overheading = true;
 	sprite_index = spr_vessel_overhead_start;
@@ -114,14 +115,15 @@ if (sprite_index == spr_vessel_overhead and animation_end()) {
 if (sprite_index == spr_vessel_overhead_end and animation_end()) {
 	sprite_index = spr_vessel_idle;
 	alarm[0] = game_get_speed(gamespeed_fps) * 10;
+	overheading = false;
 }
 
 
 //player is too far, so jump attack (all jump attack logic below)
 
-if ((x - 600 > player.x or x + 600 < player.x) and ready_for_jump and fighting) {
-	ready_for_overhead = false;
+if ((x - 600 > player.x or x + 600 < player.x) and ready_for_jump and fighting and not overheading) {
 	ready_for_jump =  false
+	jumping = true;
 	sprite_index = spr_vessel_jump_start;
 	image_index = 0;
 }
@@ -132,14 +134,22 @@ if (sprite_index == spr_vessel_jump_start and animation_end()) {
 	image_index = 0;
 	vsp = -30;
 	if (player.x - x > 0) {
-		hsp = 40;
+		hsp = 35;
 	} else {
-		hsp = -40;
+		hsp = -35;
 	}
 }
 
-if (abs(hsp) > 1 and (x > 1190 and x < 2200)) {
+if (abs(hsp) > 1 and (x > 1150 and x < 2300)) {
 	hsp -= .9 * sign(hsp);
+} else if ( x < 1150 and fighting and not overheading and not jumping) {
+	hsp = spd;
+} else if ( x > 2300 and fighting and not overheading and not jumping) {
+	hsp = -spd;
+} else if (player.x - x > 10 and fighting and not overheading and not jumping) {
+	hsp = spd;
+} else if (player.x - x < -10 and fighting and not overheading and not jumping) {
+	hsp = -spd;
 } else {
 	hsp = 0;
 }
@@ -178,7 +188,13 @@ if (sprite_index == spr_vessel_downstab and animation_end()) {
 	sprite_index = spr_vessel_idle;
 	image_index = 0;
 	alarm[2] = game_get_speed(gamespeed_fps) * 10;
+	jumping = false;
 }
 
+if (hsp > 0) {
+	image_xscale = 1;
+} else {
+	image_xscale = -1;
+}
 x += hsp;
 y += vsp;

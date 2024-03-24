@@ -2,8 +2,8 @@
 // You can write your code in this editor
 
 
-
-image_xscale = -1;
+var vessel = instance_find(obj_vessel, 0);
+image_xscale = vessel.image_xscale;
 dmg = 1;
 
 

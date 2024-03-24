@@ -85,6 +85,7 @@
     {"id":{"name":"spr_vessel_wake_2","path":"sprites/spr_vessel_wake_2/spr_vessel_wake_2.yy",},},
     {"id":{"name":"obj_downstab","path":"objects/obj_downstab/obj_downstab.yy",},},
     {"id":{"name":"obj_crawler","path":"objects/obj_crawler/obj_crawler.yy",},},
+    {"id":{"name":"snd_roar","path":"sounds/snd_roar/snd_roar.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
