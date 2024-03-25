@@ -56,6 +56,8 @@ if not (global.freeze_game) {
 
 	var keyleft = keyboard_check(vk_left);
 	var keyright = keyboard_check(vk_right);
+	var keyup = keyboard_check(vk_up);
+	var keydown = keyboard_check(vk_down);
 	var keyspace = keyboard_check(vk_space);
 	var attack;
 
@@ -63,38 +65,49 @@ if not (global.freeze_game) {
 	hsp = spd * moving;
 
 	if(!attacking){
-	if (moving != 0) {
-		sprite_index = spr_player_run;
-		image_xscale = moving * 1.3;
-		lastdir = moving;
-		if(keyspace != 0){
-			attacking = true;
-			sprite_index = spr_player_atk;
-			if(-moving < 0){
-				attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+		if (moving != 0) {
+			sprite_index = spr_player_run;
+			image_xscale = moving * 1.3;
+			lastdir = moving;
+			if(keyspace != 0){
+				attacking = true;
+				if(keydown == 0){
+					sprite_index = spr_player_atk;
+					if(-lastdir < 0){
+						attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+					}
+					else{
+						attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+					}
+					attack.image_xscale = -lastdir;
+				} else if (keydown == 1 and !grounded){
+					sprite_index = down0;
+					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
+					
+				}
 			}
-			else{
-				attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+		} else {
+			if(keyspace != 0){
+				attacking = true;
+				if(keydown == 0){
+					sprite_index = spr_player_atk;
+					if(-lastdir < 0){
+						attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+					}
+					else{
+						attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+					}
+					attack.image_xscale = -lastdir;
+				} else if (keydown == 1 and !grounded){
+					sprite_index = down0;
+					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
+					
+				}
 			}
-			attack.image_xscale = -moving;
+			else if (not jumping and grounded) {
+				sprite_index = spr_player_idle;
+			}
 		}
-	} else {
-		if(keyspace != 0){
-			attacking = true;
-			sprite_index = spr_player_atk;
-			if(-lastdir < 0){
-				attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
-			}
-			else{
-				attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
-			}
-			attack.image_xscale = -lastdir;
-		
-		}
-		else if (not jumping and grounded) {
-			sprite_index = spr_player_idle;
-		}
-	}
 	}
 
 	//Make bool variable for attacking and check if atk is at last frame before changing back
