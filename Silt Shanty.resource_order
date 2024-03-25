@@ -30,6 +30,8 @@
     {"name":"spr_player_fall","order":12,"path":"sprites/spr_player_fall/spr_player_fall.yy",},
     {"name":"spr_vessel_roar_start","order":28,"path":"sprites/spr_vessel_roar_start/spr_vessel_roar_start.yy",},
     {"name":"obj_bullet","order":6,"path":"objects/obj_bullet/obj_bullet.yy",},
+    {"name":"spr_vessel_death","order":43,"path":"sprites/spr_vessel_death/spr_vessel_death.yy",},
+    {"name":"spr_vessel_death_start","order":42,"path":"sprites/spr_vessel_death_start/spr_vessel_death_start.yy",},
     {"name":"spr_vessel_wake_3","order":27,"path":"sprites/spr_vessel_wake_3/spr_vessel_wake_3.yy",},
     {"name":"spr_vessel_overhead_end","order":36,"path":"sprites/spr_vessel_overhead_end/spr_vessel_overhead_end.yy",},
     {"name":"spr_player_run","order":10,"path":"sprites/spr_player_run/spr_player_run.yy",},

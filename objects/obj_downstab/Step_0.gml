@@ -9,4 +9,10 @@ if (animation_end()) {
 	instance_destroy(id, false);
 }
 
+var vessel = instance_find(obj_vessel, 0);
+
+if (vessel.dying) {
+	instance_destroy(id, false);
+}
+
 

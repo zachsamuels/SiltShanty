@@ -3,11 +3,14 @@
 
 
 
-if (not other.invulnerable and not other.dying){
-	audio_play_sound(snd_damage_enemy, 10, false);
+if (not other.invulnerable and not dying) {
+	other.hp -= dmg;
 	other.invulnerable = true;
-	other.hp -= 1; 
 }
+
+
+
+
 
 
 
