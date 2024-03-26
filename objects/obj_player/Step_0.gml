@@ -1,7 +1,22 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+if(dying){
+	sprite_index = spr_player_die;
+	vsp = 10;
+	if (place_meeting(x, y + vsp, obj_block)) {
+	// Im going to hit the block so move to block
+	while (not place_meeting(x, y+ sign(vsp), obj_block)) {
+		y += sign(vsp);
+	}
+	
+	}
+	if(animation_end()){
+		image_index = 3;
+		
+	}
+}
+else {
 // vert collision
 vsp += .9;
 if (place_meeting(x, y + vsp, obj_block)) {
@@ -46,13 +61,18 @@ if (jumping) {
 }
 y += vsp;
 if not (global.freeze_game) {
-	if (invulnerable and not start_vul) {
-		start_vul = true;
-		image_alpha = .8
-		alarm[1] = game_get_speed(gamespeed_fps) * 2;
-		audio_play_sound(snd_damage_player, 10, false);
-	}
-
+	if (invulnerable) {
+		if(not start_vul){
+			start_vul = true;
+			image_alpha = .8
+			alarm[1] = game_get_speed(gamespeed_fps) * 2;
+			audio_play_sound(snd_damage_player, 10, false);
+			vsp = -14;
+			
+		} 
+		//x += 5;
+		sprite_index = spr_player_hurt;
+	} else if (!invulnerable){
 
 	var keyleft = keyboard_check(vk_left);
 	var keyright = keyboard_check(vk_right);
@@ -81,7 +101,7 @@ if not (global.freeze_game) {
 					}
 					attack.image_xscale = -lastdir;
 				} else if (keydown == 1 and !grounded){
-					sprite_index = down0;
+					sprite_index = spr_player_atk_down;
 					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
 					
 				}
@@ -99,7 +119,7 @@ if not (global.freeze_game) {
 					}
 					attack.image_xscale = -lastdir;
 				} else if (keydown == 1 and !grounded){
-					sprite_index = down0;
+					sprite_index = spr_player_atk_down;
 					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
 					
 				}
@@ -120,9 +140,10 @@ if not (global.freeze_game) {
 		}
 		hsp = 0;
 	}
-
-
 	x += hsp;
+	}
+	
 } else {
 	sprite_index = spr_player_idle;
+}
 }

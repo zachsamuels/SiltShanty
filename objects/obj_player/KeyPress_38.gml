@@ -4,7 +4,7 @@
 
 
 
-if (grounded and not global.freeze_game) {
+if (grounded and not global.freeze_game and !dying and !invulnerable) {
 	vsp = -18;
 	sprite_index = spr_player_jump;
 	image_index = 0;

@@ -21,5 +21,6 @@ attacking = false;
 lastdir = 1;
 invulnerable = false;
 start_vul = false;
+dying = false;
 
 //sprite_collision_mask(spr_player_run, false, 2)

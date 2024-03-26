@@ -3,7 +3,15 @@
 
 if(instance_exists(obj_player)){
 	for(var i = 0; i < obj_player.hp; i++){
-    draw_sprite(spr_player_hp,-1, 10 + (i * 100), 10);
+		draw_sprite(spr_player_hp,-1, 10 + (i * 100), 10);
+	}
+	if(obj_player.hp <= 0){
+		obj_player.dying = true;
+		if(!dead){
+			obj_player.y += 15;
+			dead = true;
+		}
+		
 	}
 }
 
