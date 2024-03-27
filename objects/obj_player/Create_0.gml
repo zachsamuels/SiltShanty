@@ -6,7 +6,7 @@
 global.freeze_game = false;
 global.boss_fight = true;
 global.boss = "";
-hp = 3;
+hp = 10;
 spd = 10;
 dmg = 1;
 hsp = 0;

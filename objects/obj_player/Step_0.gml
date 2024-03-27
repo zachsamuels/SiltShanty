@@ -72,7 +72,7 @@ if not (global.freeze_game) {
 		} 
 		//x += 5;
 		sprite_index = spr_player_hurt;
-	} else if (!invulnerable){
+	}
 
 	var keyleft = keyboard_check(vk_left);
 	var keyright = keyboard_check(vk_right);
@@ -143,7 +143,5 @@ if not (global.freeze_game) {
 	x += hsp;
 	}
 	
-} else {
-	sprite_index = spr_player_idle;
 }
-}
+
