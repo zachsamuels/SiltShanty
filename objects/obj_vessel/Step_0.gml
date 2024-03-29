@@ -42,6 +42,7 @@ if (death_shake) {
 if (dying and sprite_index == spr_vessel_death and animation_end()) {
 	image_speed = 0;
 	dead = true;
+	camera_set_view_border(view_camera[0], 500, 300)
 }
 
 if (not dying) {

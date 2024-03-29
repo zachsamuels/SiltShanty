@@ -67,11 +67,11 @@ if not (global.freeze_game) {
 			image_alpha = .8
 			alarm[1] = game_get_speed(gamespeed_fps) * 2;
 			audio_play_sound(snd_damage_player, 10, false);
+			sprite_index = spr_player_hurt;
 			vsp = -14;
 			
 		} 
 		//x += 5;
-		sprite_index = spr_player_hurt;
 	}
 
 	var keyleft = keyboard_check(vk_left);
