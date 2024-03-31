@@ -3,5 +3,6 @@
 
 
 
+has_double_jump = true;
 
 

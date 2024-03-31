@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if (invulnerable) {
+if (invulnerable and not dying) {
 	image_alpha = .8;
 } else {
 	image_alpha = 1;
@@ -48,7 +48,7 @@ if (dying and sprite_index == spr_vessel_death and animation_end()) {
 if (not dying) {
 	if (invulnerable and not start_vul) {
 		start_vul = true;
-		alarm[1] = game_get_speed(gamespeed_fps) * .5;
+		alarm[1] = game_get_speed(gamespeed_fps) * .25;
 	}
 
 	var cam = view_camera[0];

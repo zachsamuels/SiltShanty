@@ -16,4 +16,6 @@ left = 3280;
 right = 4340;
 dash_left = 3400;
 dash_right = 4150
+invulnerable = false;
+start_vul = false;
 

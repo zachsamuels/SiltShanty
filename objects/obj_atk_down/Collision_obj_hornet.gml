@@ -3,12 +3,9 @@
 
 
 
-
-
-if (not other.invulnerable and not other.dying){
-	audio_play_sound(snd_damage_enemy, 10, false);
+if (not other.invulnerable and not other.dying) {
+	other.hp -= dmg;
 	other.invulnerable = true;
-	other.hp -= 1; 
 }
 
 if(instance_exists(obj_player)){
@@ -16,5 +13,3 @@ if(instance_exists(obj_player)){
 	obj_player.vsp = -18;
 	obj_player.can_double_jump = true;
 }
-
-

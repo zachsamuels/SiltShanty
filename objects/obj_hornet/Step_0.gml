@@ -1,7 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+if (invulnerable and not dying) {
+	image_alpha = .8;
+} else {
+	image_alpha = 1;
+}
+if (invulnerable and not start_vul) {
+	start_vul = true;
+	alarm[2] = game_get_speed(gamespeed_fps) * .25;
+}
 
 if (not dying) {
 	player_left = obj_player.x < x;
