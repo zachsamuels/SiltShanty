@@ -4,12 +4,16 @@
 
 
 if (not other.invulnerable and not other.dying) {
-	other.hp -= dmg;
-	other.invulnerable = true;
+	if (other.countering) {
+		other.countered = true;
+	} else {
+		other.hp -= dmg;
+		other.invulnerable = true;
+	}
 }
 
 if(instance_exists(obj_player)){
 	obj_player.jumping = true;
-	obj_player.vsp = -18;
+	obj_player.vsp = -10;
 	obj_player.can_double_jump = true;
 }

@@ -7,7 +7,7 @@ dmg = 1;
 awake = false;
 dying = false;
 fighting = false;
-ready_to_dash = true;
+ready_to_dash = false;
 hsp = 0;
 vsp = 0;
 player_left = true;
@@ -18,4 +18,7 @@ dash_left = 3400;
 dash_right = 4150
 invulnerable = false;
 start_vul = false;
-
+ready_to_counter = false;
+countering = false;
+counters = 0;
+countered = false;

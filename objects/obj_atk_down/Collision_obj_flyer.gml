@@ -7,7 +7,7 @@ if (not other.dying) {
 
 if(instance_exists(obj_player)){
 	obj_player.jumping = true;
-	obj_player.vsp = -18;
+	obj_player.vsp = -10;
 	obj_player.can_double_jump = true;
 }
 

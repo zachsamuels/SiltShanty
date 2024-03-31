@@ -11,6 +11,24 @@ if (invulnerable and not start_vul) {
 	alarm[2] = game_get_speed(gamespeed_fps) * .25;
 }
 
+if (hp <= 0 and not dying) {
+	dying = true;
+	sprite_index = spr_hornet_wounded;
+	image_index = 0;
+}
+
+else if (sprite_index == spr_hornet_wounded and animation_end()) {
+	sprite_index = spr_hornet_stunned;
+	image_index = 0;
+}
+else if (sprite_index == spr_hornet_stunned and animation_end()) {
+	sprite_index = spr_hornet_leave;
+	image_index = 0;
+}
+else if (sprite_index == spr_hornet_leave and animation_end()){
+	instance_destroy(id, true);
+}
+
 if (not dying) {
 	player_left = obj_player.x < x;
 	if (not dashing) {
@@ -25,7 +43,7 @@ if (not dying) {
 	var cam_y = camera_get_view_y(cam);
 	var cam_width = camera_get_view_width(cam);
 	var cam_height = camera_get_view_height(cam);
-	var in_viewport = bbox_right > cam_x && bbox_left < cam_x + cam_width- 400 &&
+	var in_viewport = bbox_right > cam_x && bbox_left < cam_x + cam_width- 250 &&
 	                  bbox_bottom > cam_y && bbox_top < cam_y + cam_height;
 	if (in_viewport and not awake) {
 		awake = true;
@@ -37,9 +55,11 @@ if (not dying) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		fighting = true;
+		ready_to_counter = true;
+		ready_to_dash = true;
 	}
 	
-	if (fighting and ready_to_dash and (x < dash_left or x > dash_right)) {
+	if (fighting and ready_to_dash and (x < dash_left or x > dash_right) and not countering) {
 		dashing = true;
 		ready_to_dash = false;
 		sprite_index = spr_hornet_dash_start;
@@ -55,18 +75,67 @@ if (not dying) {
 		} else {
 			hsp = 40;
 		}
-		alarm[0]= game_get_speed(gamespeed_fps) * .35;
+		alarm[0]= game_get_speed(gamespeed_fps) * .4;
 	}
 	
-	if (sprite_index = spr_hornet_dash and image_index == 1) {
+	else if (sprite_index = spr_hornet_dash and image_index == 1) {
 		image_speed = 0;
 	}
 	
-	if (sprite_index == spr_hornet_dash_end and animation_end()) {
+	else if (sprite_index == spr_hornet_dash_end and animation_end()) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		dashing = false;
 		alarm[1] = game_get_speed(gamespeed_fps) * 10;
+	}
+	
+	if ((x - 200 < obj_player.x and x + 200 > obj_player.x) and ready_to_counter and not dashing) {
+		countering = true;
+		ready_to_counter = false;
+		sprite_index = spr_hornet_counter_start;
+		image_index = 0;
+	}
+	
+	if (sprite_index == spr_hornet_counter_start and animation_end()) {
+		sprite_index = spr_hornet_counter;
+		image_index = 0;
+	}
+	
+	else if (sprite_index == spr_hornet_counter) {
+		if (countered) {
+			sprite_index = spr_hornet_counter_hit;
+			image_index = 0;
+			counters = 0;
+		}
+		else if (counters > 8) {
+			sprite_index = spr_hornet_counter_failed;
+			image_index = 0;
+			counters = 0;
+		} else if (animation_end()) {
+			counters += 1;
+		}	
+	}
+	
+	else if (sprite_index == spr_hornet_counter_failed and animation_end()) {
+		sprite_index = spr_hornet_idle;
+		image_index = 0;
+		countering = false;
+		alarm[3] = game_get_speed(gamespeed_fps) * 10;
+	}
+	
+	else if (sprite_index == spr_hornet_counter_hit and animation_end()) {
+		sprite_index = spr_hornet_countering_1;
+		image_index = 0;
+		alarm[4] = game_get_speed(gamespeed_fps) * .1;
+	}
+	
+	
+	else if (sprite_index == spr_hornet_countering_end) {
+		sprite_index = spr_hornet_idle;
+		image_index = 0;
+		countering = false;
+		countered = false;
+		alarm[3] = game_get_speed(gamespeed_fps) * 10;
 	}
 	
 	x += hsp;
