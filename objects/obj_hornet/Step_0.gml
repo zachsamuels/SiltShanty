@@ -4,6 +4,14 @@
 
 
 if (not dying) {
+	player_left = obj_player.x < x;
+	if (not dashing) {
+		if (player_left) {
+			image_xscale = 1;
+		} else {
+			image_xscale = -1;
+		}
+	}
 	var cam = view_camera[0];
 	var cam_x = camera_get_view_x(cam);
 	var cam_y = camera_get_view_y(cam);
@@ -20,6 +28,40 @@ if (not dying) {
 	if (sprite_index == spr_hornet_flourish and animation_end()) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
-		
+		fighting = true;
 	}
+	
+	if (fighting and ready_to_dash and (x < dash_left or x > dash_right)) {
+		dashing = true;
+		ready_to_dash = false;
+		sprite_index = spr_hornet_dash_start;
+		image_index = 0;	 
+	}
+	
+	if (sprite_index == spr_hornet_dash_start and animation_end()) {
+		var dash = instance_create_layer(x, y, "Instances", obj_dash);
+		sprite_index = spr_hornet_dash;
+		image_index = 0;
+		if (player_left) {
+			hsp = -40;
+		} else {
+			hsp = 40;
+		}
+		alarm[0]= game_get_speed(gamespeed_fps) * .35;
+	}
+	
+	if (sprite_index = spr_hornet_dash and image_index == 1) {
+		image_speed = 0;
+	}
+	
+	if (sprite_index == spr_hornet_dash_end and animation_end()) {
+		sprite_index = spr_hornet_idle;
+		image_index = 0;
+		dashing = false;
+		alarm[1] = game_get_speed(gamespeed_fps) * 10;
+	}
+	
+	x += hsp;
+	y += vsp;
+	
 }

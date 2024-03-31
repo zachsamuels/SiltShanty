@@ -184,11 +184,11 @@ if (not dying) {
 		}
 	}
 
-	if (abs(hsp) > 1 and (x > 1150 and x < 2300)) {
+	if (abs(hsp) > 1 and (x > left and x < right)) {
 		hsp -= .9 * sign(hsp);
-	} else if ( x < 1150 and fighting and not overheading and not jumping) {
+	} else if ( x < left and fighting and not overheading and not jumping) {
 		hsp = spd;
-	} else if ( x > 2300 and fighting and not overheading and not jumping) {
+	} else if ( x > right and fighting and not overheading and not jumping) {
 		hsp = -spd;
 	} else if (player.x - x > 10 and fighting and not overheading and not jumping) {
 		hsp = spd;

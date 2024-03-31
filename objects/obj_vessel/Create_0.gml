@@ -29,3 +29,5 @@ ready_to_land = false;
 dying = false;
 death_shake = false;
 dead = false;
+left = 1150;
+right = 2300;
