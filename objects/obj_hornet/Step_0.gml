@@ -87,7 +87,7 @@ if (not dying) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		dashing = false;
-		alarm[1] = game_get_speed(gamespeed_fps) * 6;
+		alarm[1] = game_get_speed(gamespeed_fps) * 4;
 	}
 	
 	if ((x - 200 < obj_player.x and x + 200 > obj_player.x) and ready_to_counter and not dashing and not sphering) {
@@ -121,7 +121,7 @@ if (not dying) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		countering = false;
-		alarm[3] = game_get_speed(gamespeed_fps) * 4;
+		alarm[3] = game_get_speed(gamespeed_fps) * 3;
 	}
 	
 	else if (sprite_index == spr_hornet_counter_hit and animation_end()) {
@@ -144,7 +144,7 @@ if (not dying) {
 		sphering = true;
 		sprite_index = spr_hornet_run;
 		image_index = 0;
-		if (x > center) {
+		if (x < center) {
 			image_xscale = -1;
 			hsp = 10;
 		} else {
@@ -190,7 +190,7 @@ if (not dying) {
 			sphering = false;
 			sprite_index = spr_hornet_idle;
 			image_index = 0;
-			alarm[6] = game_get_speed(gamespeed_fps) * 6;
+			alarm[6] = game_get_speed(gamespeed_fps) * 4;
 		}
 	}
 	
