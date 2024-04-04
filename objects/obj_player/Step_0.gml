@@ -112,7 +112,7 @@ if not (global.freeze_game) {
 		var keydown = keyboard_check(vk_down);
 		var keyspace = keyboard_check(ord("C"));
 	}
-	if (controller_jump) {
+	/*if (controller_jump) {
 		if ((grounded or (can_double_jump and has_double_jump)) and not global.freeze_game and !dying) {
 			if (not grounded) {
 				can_double_jump = false;
@@ -123,7 +123,7 @@ if not (global.freeze_game) {
 			jumping = true;
 			audio_play_sound(snd_jump	, 10, false);
 		}
-	}
+	}*/
 	
 	hsp = spd * moving;
 	var attack;
