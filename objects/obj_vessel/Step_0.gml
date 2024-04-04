@@ -158,7 +158,7 @@ if (not dying) {
 
 	if (sprite_index == spr_vessel_overhead_end and animation_end()) {
 		sprite_index = spr_vessel_idle;
-		alarm[0] = game_get_speed(gamespeed_fps) * 10;
+		alarm[0] = game_get_speed(gamespeed_fps) * 4;
 		overheading = false;
 	}
 
@@ -231,7 +231,7 @@ if (not dying) {
 	if (sprite_index == spr_vessel_downstab and animation_end()) {
 		sprite_index = spr_vessel_idle;
 		image_index = 0;
-		alarm[2] = game_get_speed(gamespeed_fps) * 10;
+		alarm[2] = game_get_speed(gamespeed_fps) * 5;
 		jumping = false;
 	}
 

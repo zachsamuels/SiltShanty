@@ -31,7 +31,7 @@ else if (sprite_index == spr_hornet_leave and animation_end()){
 
 if (not dying) {
 	player_left = obj_player.x < x;
-	if (not dashing) {
+	if (not dashing and not sphering) {
 		if (player_left) {
 			image_xscale = 1;
 		} else {
@@ -57,9 +57,10 @@ if (not dying) {
 		fighting = true;
 		ready_to_counter = true;
 		ready_to_dash = true;
+		ready_to_sphere = true;
 	}
 	
-	if (fighting and ready_to_dash and (x < dash_left or x > dash_right) and not countering) {
+	if (fighting and ready_to_dash and (x < dash_left or x > dash_right) and not countering and not sphering) {
 		dashing = true;
 		ready_to_dash = false;
 		sprite_index = spr_hornet_dash_start;
@@ -86,10 +87,10 @@ if (not dying) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		dashing = false;
-		alarm[1] = game_get_speed(gamespeed_fps) * 10;
+		alarm[1] = game_get_speed(gamespeed_fps) * 6;
 	}
 	
-	if ((x - 200 < obj_player.x and x + 200 > obj_player.x) and ready_to_counter and not dashing) {
+	if ((x - 200 < obj_player.x and x + 200 > obj_player.x) and ready_to_counter and not dashing and not sphering) {
 		countering = true;
 		ready_to_counter = false;
 		sprite_index = spr_hornet_counter_start;
@@ -120,7 +121,7 @@ if (not dying) {
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		countering = false;
-		alarm[3] = game_get_speed(gamespeed_fps) * 10;
+		alarm[3] = game_get_speed(gamespeed_fps) * 4;
 	}
 	
 	else if (sprite_index == spr_hornet_counter_hit and animation_end()) {
@@ -135,7 +136,62 @@ if (not dying) {
 		image_index = 0;
 		countering = false;
 		countered = false;
-		alarm[3] = game_get_speed(gamespeed_fps) * 10;
+		alarm[3] = game_get_speed(gamespeed_fps) * 6;
+	}
+	
+	if (ready_to_sphere and not countering and not dashing) {
+		ready_to_sphere = false;
+		sphering = true;
+		sprite_index = spr_hornet_run;
+		image_index = 0;
+		if (x > center) {
+			image_xscale = -1;
+			hsp = 10;
+		} else {
+			hsp = -10;
+		}
+		running_to = true;
+	}
+	
+	if (sprite_index == spr_hornet_run and running_to) {
+		if ((image_xscale == -1 and x > center) or (image_xscale == 1 and x < center)) {
+			hsp = 0;
+			sprite_index = spr_hornet_sphere_start;
+			image_index = 0;
+			running_to = false;
+		}
+	}
+	
+	else if (sprite_index == spr_hornet_sphere_start and animation_end()) {
+		sprite_index = spr_hornet_sphere;
+		image_index = 0;
+		var sphere = instance_create_layer(x, y, "Instances", obj_sphere);
+	}
+	
+	else if (sprite_index == spr_hornet_sphere and animation_end()) {
+		sprite_index = spr_hornet_sphere_end;
+		image_index = 0;
+	}
+	
+	else if (sprite_index = spr_hornet_sphere_end and animation_end()) {
+		sprite_index = spr_hornet_run;
+		image_index = 0;
+		if (image_xscale == 1) {
+			hsp = -10;
+		}
+		else {
+			hsp = 10;
+		}
+	}
+	
+	if (sprite_index = spr_hornet_run and not running_to) {
+		if (image_xscale == 1 and x <= left) or (image_xscale == -1 and x >= right) {
+			hsp = 0;
+			sphering = false;
+			sprite_index = spr_hornet_idle;
+			image_index = 0;
+			alarm[6] = game_get_speed(gamespeed_fps) * 6;
+		}
 	}
 	
 	x += hsp;
