@@ -103,7 +103,18 @@ if not (global.freeze_game) {
 		if (gamepad_button_check_pressed(0, gp_shoulderl)) {
 			has_double_jump = true;
 		}
-		
+		if (controller_jump) {
+		if ((grounded or (can_double_jump and has_double_jump)) and not global.freeze_game and !dying) {
+			if (not grounded) {
+				can_double_jump = false;
+			}
+			vsp = -18;
+			sprite_index = spr_player_jump;
+			image_index = 0;
+			jumping = true;
+			audio_play_sound(snd_jump	, 10, false);
+		}
+		}
 	} else {
 		var keyleft = keyboard_check(vk_left);
 		var keyright = keyboard_check(vk_right);
