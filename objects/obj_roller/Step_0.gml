@@ -7,7 +7,7 @@
 
 if (turning and not dying) {
 	if (animation_end()) {
-		sprite_index = spr_crawler_crawl;
+		sprite_index = spr_roller_walk;
 		image_index = 0;
 		image_xscale *= -1;
 		turning = false;
@@ -16,13 +16,13 @@ if (turning and not dying) {
 } else if (not dying) {
 	hsp = spd * dir;
 	if (hsp < 0 ) {
-		var boxx = bbox_left;
+		boxx = bbox_left;
 	} else {
-		var boxx = bbox_right;
+		boxx = bbox_right;
 	}
 	if (!place_meeting(boxx + hsp*30, y + 10, obj_block) || place_meeting(x + hsp, y-30, obj_block)) {
 		turning = true;
-		sprite_index = spr_crawler_turn;
+		//sprite_index = spr_crawler_turn;
 		image_index = 0;
 	} else {
 		x += hsp;
@@ -39,3 +39,4 @@ if (dying and animation_end()) {
 	instance_destroy(id, true);
 }
 	
+
