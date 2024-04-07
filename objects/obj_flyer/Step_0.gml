@@ -18,7 +18,7 @@ if (dying and animation_end()) {
 		sprite_index = spr_flyer_turn;
 	}
 
-	if (collision_line(x, y, player.x, player.y, obj_player, false, true) != noone and not firing and can_fire) {
+	if (collision_line(x, y, player.x, player.y, obj_block, false, true) != noone and not firing and can_fire) {
 		firing = true;
 		can_fire = false;
 		sprite_index = spr_flyer_fire;
