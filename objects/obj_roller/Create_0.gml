@@ -11,8 +11,9 @@ dir = -1;
 dmg = 1;
 left = false;
 rolling = false;
-rollspd = 5;
-
+rollspd = 10;
+move = false;
+stopping = false;
 
 
 
