@@ -3,7 +3,7 @@
 
 hsp = 0;
 hp = 1;
-dmj = 1;
+dmg = 1;
 dying = false;
 turning = false;
 spd = 1;
@@ -14,6 +14,7 @@ rolling = false;
 rollspd = 10;
 move = false;
 stopping = false;
+ready_to_roll = true;
 
 
 
