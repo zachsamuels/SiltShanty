@@ -10,6 +10,9 @@ firing = false;
 dying = false;
 can_fire = true;
 turning = false;
-
 //[0] = game_get_speed(gamespeed_fps) * 3;
 path_start(pth_flyer_1, spd, path_action_restart, false);
+
+
+audio_play_sound(snd_flyer, 10, false);
+alarm[2] = game_get_speed(gamespeed_fps) * 2.91

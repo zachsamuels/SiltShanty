@@ -3,7 +3,7 @@
 
 
 
-
-sprite_index = spr_hornet_countering_2;
-alarm[5] = game_get_speed(gamespeed_fps) * .12;
-
+if (not dying) {
+	sprite_index = spr_hornet_countering_2;
+	alarm[5] = game_get_speed(gamespeed_fps) * .12;
+}

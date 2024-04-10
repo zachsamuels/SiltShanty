@@ -24,7 +24,11 @@ start_vul = false;
 dying = false;
 can_double_jump = true;
 has_double_jump = false;
+sound_distance = 1000;
+run_start = false;
+death_sound = false;
 if (gamepad_is_connected(0)) {
 		gamepad_set_axis_deadzone(0, .2);
 }
 //sprite_collision_mask(spr_player_run, false, 2)
+audio_play_sound(snd_background, 10, true);

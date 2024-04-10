@@ -4,7 +4,6 @@
 
 
 
-
 if (turning and not dying) {
 	if (animation_end()) {
 		sprite_index = spr_crawler_crawl;
@@ -32,10 +31,12 @@ if (turning and not dying) {
 if(hp <= 0 and not dying){
 	dying = true;
 	sprite_index = spr_crawler_death;
+	audio_stop_sound(snd_crawler);
 	image_index = 0;
 }
 
 if (dying and animation_end()) {
 	instance_destroy(id, true);
+	
 }
 	

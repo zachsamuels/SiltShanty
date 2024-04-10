@@ -10,6 +10,7 @@ if (invulnerable and not dying) {
 if (hp <= 0 and not dying) {
 	dying = true;
 	sprite_index = spr_vessel_death_start;
+	audio_play_sound(snd_vessel_last_hit, 10, false);
 	image_index = 0;
 }
 
@@ -43,6 +44,7 @@ if (dying and sprite_index == spr_vessel_death and animation_end()) {
 	image_speed = 0;
 	dead = true;
 	camera_set_view_border(view_camera[0], 500, 300)
+	audio_play_sound(snd_background2, 10, true);
 }
 
 if (not dying) {
@@ -62,6 +64,7 @@ if (not dying) {
 		awake = true;
 		global.freeze_game = true;
 		sprite_index = spr_vessel_wake_1;
+		audio_stop_sound(snd_background);
 	}
 
 	if (sprite_index == spr_vessel_wake_1 and animation_end()) {

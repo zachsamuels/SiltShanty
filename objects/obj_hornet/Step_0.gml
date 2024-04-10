@@ -12,16 +12,20 @@ if (invulnerable and not start_vul) {
 }
 
 if (hp <= 0 and not dying) {
+	image_speed = 1;
 	dying = true;
 	sprite_index = spr_hornet_wounded;
+	audio_stop_sound(snd_hornet_background);
 	image_index = 0;
 }
 
 else if (sprite_index == spr_hornet_wounded and animation_end()) {
+	audio_play_sound(snd_hornet_death, 10, false);
 	sprite_index = spr_hornet_stunned;
 	image_index = 0;
 }
 else if (sprite_index == spr_hornet_stunned and animation_end()) {
+	audio_play_sound(snd_hornet_leave, 10, false);
 	sprite_index = spr_hornet_leave;
 	image_index = 0;
 }
@@ -30,6 +34,7 @@ else if (sprite_index == spr_hornet_leave and animation_end()){
 }
 
 if (not dying) {
+
 	player_left = obj_player.x < x;
 	if (not dashing and not sphering) {
 		if (player_left) {
@@ -49,9 +54,13 @@ if (not dying) {
 		awake = true;
 		sprite_index = spr_hornet_flourish;
 		camera_set_view_border(cam, 0, 0)
+		audio_play_sound(snd_hornet_flourish, 10, false);
+		audio_stop_sound(snd_background2);
+		audio_play_sound(snd_hornet_background, 10, true);
 	}
 	
 	if (sprite_index == spr_hornet_flourish and animation_end()) {
+		
 		sprite_index = spr_hornet_idle;
 		image_index = 0;
 		fighting = true;
@@ -64,10 +73,13 @@ if (not dying) {
 		dashing = true;
 		ready_to_dash = false;
 		sprite_index = spr_hornet_dash_start;
-		image_index = 0;	 
+		image_index = 0;
+		audio_play_sound(snd_hornet_sha, 10, false);
+		
 	}
 	
 	if (sprite_index == spr_hornet_dash_start and animation_end()) {
+		waiting = false;
 		var dash = instance_create_layer(x, y, "Instances", obj_dash);
 		sprite_index = spr_hornet_dash;
 		image_index = 0;
@@ -76,6 +88,8 @@ if (not dying) {
 		} else {
 			hsp = 40;
 		}
+		audio_play_sound(snd_hornet_dash, 10, false);
+		audio_play_sound(snd_hornet_yell3, 10, false);
 		alarm[0]= game_get_speed(gamespeed_fps) * .4;
 	}
 	
@@ -94,7 +108,14 @@ if (not dying) {
 		countering = true;
 		ready_to_counter = false;
 		sprite_index = spr_hornet_counter_start;
+		audio_play_sound(snd_hornet_counter_start, 10, false);
 		image_index = 0;
+		audio_play_sound(snd_hornet_yell2, 10, false);
+	}
+	else if (!waiting and !ready_to_dash and !ready_to_sphere and fighting and not sphering and not countering and not dashing){
+		audio_play_sound(snd_hornet_waiting, 10, false);
+		waiting = true;
+		alarm[6] = game_get_speed(gamespeed_fps)
 	}
 	
 	if (sprite_index == spr_hornet_counter_start and animation_end()) {
@@ -105,6 +126,7 @@ if (not dying) {
 	else if (sprite_index == spr_hornet_counter) {
 		if (countered) {
 			sprite_index = spr_hornet_counter_hit;
+			audio_play_sound(snd_hornet_counter, 10, false);
 			image_index = 0;
 			counters = 0;
 		}
@@ -146,17 +168,21 @@ if (not dying) {
 		image_index = 0;
 		if (x < center) {
 			image_xscale = -1;
-			hsp = 10;
+			hsp = 6;
 		} else {
-			hsp = -10;
+			hsp = -6;
 		}
 		running_to = true;
+		audio_play_sound(snd_hornet_run, 10, false);
+		audio_play_sound(snd_hornet_laugh, 10, false);
 	}
+	
 	
 	if (sprite_index == spr_hornet_run and running_to) {
 		if ((image_xscale == -1 and x > center) or (image_xscale == 1 and x < center)) {
 			hsp = 0;
 			sprite_index = spr_hornet_sphere_start;
+			audio_play_sound(snd_hornet_yell1, 10, false);
 			image_index = 0;
 			running_to = false;
 		}
@@ -166,6 +192,8 @@ if (not dying) {
 		sprite_index = spr_hornet_sphere;
 		image_index = 0;
 		var sphere = instance_create_layer(x, y, "Instances", obj_sphere);
+		audio_play_sound(snd_hornet_sphere, 10, false);
+		
 	}
 	
 	else if (sprite_index == spr_hornet_sphere and animation_end()) {
@@ -177,11 +205,12 @@ if (not dying) {
 		sprite_index = spr_hornet_run;
 		image_index = 0;
 		if (image_xscale == 1) {
-			hsp = -10;
+			hsp = -6;
 		}
 		else {
-			hsp = 10;
+			hsp = 6;
 		}
+		audio_play_sound(snd_hornet_run, 10, false);
 	}
 	
 	if (sprite_index = spr_hornet_run and not running_to) {

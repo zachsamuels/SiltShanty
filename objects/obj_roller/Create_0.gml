@@ -17,5 +17,6 @@ stopping = false;
 ready_to_roll = true;
 
 
-
+audio_play_sound(snd_crawler, 10, false);
+alarm[0] = game_get_speed(gamespeed_fps) * 3.52
 

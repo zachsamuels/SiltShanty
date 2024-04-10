@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-hp = 30;
+hp = 20;
 dmg = 1;
 awake = false;
 dying = false;
@@ -26,3 +26,4 @@ countered = false;
 ready_to_sphere = false;
 sphering = false;
 running_to = false;
+waiting = false;

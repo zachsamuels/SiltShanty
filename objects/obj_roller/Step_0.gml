@@ -18,6 +18,8 @@ else if (not dying) {
 			ready_to_roll = false;
 			sprite_index = spr_roller_roll_start;
 			image_index = 0;
+			audio_play_sound(snd_roller_curl, 10, false);
+			audio_stop_sound(snd_crawler);
 		}
 	}
 	if (not rolling) {
@@ -31,6 +33,7 @@ else if (not dying) {
 		move = true;
 		sprite_index = spr_roller_roll;
 		image_index = 0;
+		audio_play_sound(snd_rolling, 10, true);
 	}
 	
 	if (sprite_index == spr_roller_roll_stop and animation_end()) {
@@ -54,6 +57,8 @@ else if (not dying) {
 			hsp = 0;
 			sprite_index = spr_roller_roll_stop;
 			image_index = 0;
+			audio_stop_sound(snd_rolling);
+			audio_play_sound(snd_roller_hit_wall, 10, false);
 		}
 		else if (not rolling){
 			turning = true;

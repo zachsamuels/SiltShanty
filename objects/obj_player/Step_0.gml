@@ -2,6 +2,10 @@
 // You can write your code in this editor
 
 if(dying){
+	if (not death_sound) {
+		audio_play_sound(snd_player_death, 10, false);
+		death_sound = true;
+	}
 	sprite_index = spr_player_die;
 	vsp = 10;
 	if (place_meeting(x, y + vsp, obj_block)) {
@@ -32,11 +36,14 @@ if (place_meeting(x, y + vsp, obj_block)) {
 		landing = true;
 		sprite_index = spr_player_land;	
 		image_index = 0;
+		audio_play_sound(snd_land, 10, false);
+		audio_stop_sound(snd_falling);
 		}
 		
 } else {
 	grounded = false;
 	if (not jumping and not falling) {
+		audio_play_sound(snd_falling, 10, true);
 		falling = true;
 		sprite_index = spr_player_fall;
 		image_index = 0;
@@ -104,16 +111,20 @@ if not (global.freeze_game) {
 			has_double_jump = true;
 		}
 		if (controller_jump) {
-		if ((grounded or (can_double_jump and has_double_jump)) and not global.freeze_game and !dying) {
-			if (not grounded) {
-				can_double_jump = false;
+			if ((grounded or (can_double_jump and has_double_jump)) and not global.freeze_game and !dying) {
+				if (not grounded) {
+					can_double_jump = false;
+					audio_play_sound(snd_double_jump, 10, false);
+				}
+				else {
+					audio_play_sound(snd_jump, 10, false);
+				}
+				vsp = -18;
+				sprite_index = spr_player_jump;
+				image_index = 0;
+				jumping = true;
+				
 			}
-			vsp = -18;
-			sprite_index = spr_player_jump;
-			image_index = 0;
-			jumping = true;
-			audio_play_sound(snd_jump	, 10, false);
-		}
 		}
 	} else {
 		var keyleft = keyboard_check(vk_left);
@@ -137,6 +148,7 @@ if not (global.freeze_game) {
 	}*/
 	
 	hsp = spd * moving;
+	
 	var attack;
 	
 	if(!attacking){
@@ -196,7 +208,63 @@ if not (global.freeze_game) {
 		hsp = 0;
 	}
 	x += hsp;
+	if (hsp != 0 and grounded and not run_start) {
+		run_start = true;
+		audio_play_sound(snd_player_run, 10, true);
+	} else if (hsp == 0 or not grounded) {
+		audio_stop_sound(snd_player_run);
+		run_start = false;
+	}
 	}
 	
 }
 
+
+var flyer = instance_nearest(x, y, obj_flyer);
+var crawler  = instance_nearest(x, y, obj_crawler);
+var roller = instance_nearest(x, y, obj_roller);
+
+if (flyer != noone) {
+	d = sqrt(sqr((flyer.x-x)) + sqr((flyer.y - y)))
+
+	if (d < sound_distance) {
+		var volume = 1 - (d / sound_distance);
+	} else {
+		var volume = 0;
+	}
+	audio_sound_gain(snd_flyer, volume, 0);
+	audio_sound_gain(snd_flyer_shoot, volume, 0);
+}
+
+
+if (crawler != noone) {
+	d = sqrt(sqr((crawler.x-x)) + sqr((crawler.y - y)))
+	if (roller != noone) {
+		rollerd = sqrt(sqr((roller.x-x)) + sqr((roller.y - y)))
+		d = min(d, rollerd);
+	}
+	
+	
+	
+	
+	if (d < sound_distance) {
+		var volume = 1 - (d / sound_distance);
+	} else {
+		var volume = 0;
+	}
+	audio_sound_gain(snd_crawler, volume, 0);
+}
+
+
+if (roller != noone) {
+	d = sqrt(sqr((roller.x-x)) + sqr((roller.y - y)))
+
+	if (d < sound_distance) {
+		var volume = 1 - (d / sound_distance);
+	} else {
+		var volume = 0;
+	}
+	audio_sound_gain(snd_roller_curl, volume, 0);
+	audio_sound_gain(snd_rolling, volume, 0);
+	audio_sound_gain(snd_roller_hit_wall, volume, 0);
+}

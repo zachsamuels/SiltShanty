@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
+
+
 if (dying and animation_end()) {
 	instance_destroy(id, true);
 } else if (not dying) {
@@ -18,7 +21,7 @@ if (dying and animation_end()) {
 		sprite_index = spr_flyer_turn;
 	}
 
-	if (collision_line(x, y, player.x, player.y, obj_block, false, true) != noone and not firing and can_fire) {
+	if (collision_line(x, y, player.x, player.y, obj_block, false, true) == noone and not firing and can_fire) {
 		firing = true;
 		can_fire = false;
 		sprite_index = spr_flyer_fire;
@@ -33,6 +36,7 @@ if (dying and animation_end()) {
 	}
 
 	if (firing and image_index == 9) {
+		audio_play_sound(snd_flyer_shoot, 10, false);
 		instance_create_layer(x, y, "Instances", obj_bullet);
 	}
 
@@ -47,6 +51,7 @@ if (dying and animation_end()) {
 		image_index = 0;
 		sprite_index = spr_flyer_death;
 		dying = true;
+		audio_stop_sound(snd_flyer);
 	}
 
 } else {

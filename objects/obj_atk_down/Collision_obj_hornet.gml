@@ -10,7 +10,8 @@ if (not other.invulnerable and not other.dying) {
 		other.hp -= dmg;
 		other.invulnerable = true;
 	}
-	audio_play_sound(snd_damage_enemy, 10, false);
+		audio_play_sound(snd_boss_hit, 10, false);
+		audio_play_sound(snd_hornet_hurt, 10, false);
 }
 
 if(instance_exists(obj_player)){
