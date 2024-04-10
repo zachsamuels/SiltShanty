@@ -165,11 +165,8 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
-<<<<<<< HEAD
     {"roomId":{"name":"Splash","path":"rooms/Splash/Splash.yy",},},
-=======
     {"roomId":{"name":"Level1","path":"rooms/Level1/Level1.yy",},},
->>>>>>> 32b830d6ec7ebea7ef3ef057238dfab6a987fc10
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "templateType": "game",
