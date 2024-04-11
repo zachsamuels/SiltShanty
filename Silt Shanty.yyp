@@ -214,9 +214,9 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
+    {"roomId":{"name":"Splash","path":"rooms/Splash/Splash.yy",},},
     {"roomId":{"name":"Level1","path":"rooms/Level1/Level1.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
-    {"roomId":{"name":"Splash","path":"rooms/Splash/Splash.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [
