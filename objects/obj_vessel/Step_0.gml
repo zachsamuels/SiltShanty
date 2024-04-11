@@ -15,11 +15,13 @@ if (hp <= 0 and not dying) {
 }
 
 if (dying and sprite_index == spr_vessel_death_start and animation_end()) {
+	
 	death_shake = true;
 	cam_original_x = camera_get_view_x(view_camera[0]);
 	cam_original_y = camera_get_view_y(view_camera[0]);
 	image_speed = 0;
 	shake_duration = 60;
+	gamepad_set_vibration(0, .75, .75);
 }
 
 if (death_shake) {
@@ -32,11 +34,12 @@ if (death_shake) {
 		shake_duration -= 1;
 	}
 	else {
-	camera_set_view_pos(view_camera[0], cam_original_x, cam_original_y);
-	death_shake = false;
-	sprite_index = spr_vessel_death;
-	image_index = 0;
-	image_speed = 1;
+		camera_set_view_pos(view_camera[0], cam_original_x, cam_original_y);
+		death_shake = false;
+		sprite_index = spr_vessel_death;
+		image_index = 0;
+		image_speed = 1;
+		gamepad_set_vibration(0, 0, 0);
 	}
 }
 
@@ -92,6 +95,7 @@ if (not dying) {
 	}
 	
 	if (roaring) {
+		gamepad_set_vibration(0, 1, 1);
 		if (shake_duration > 0) {
 		    var _shakeX = irandom_range(-shake_intensity, shake_intensity);
 		    var _shakeY = irandom_range(-shake_intensity, shake_intensity);
@@ -112,6 +116,7 @@ if (not dying) {
 		
 			image_index = 0;
 			roaring = false;
+			gamepad_set_vibration(0, 0, 0);
 		}
 	}
 	

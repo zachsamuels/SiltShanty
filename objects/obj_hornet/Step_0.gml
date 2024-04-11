@@ -57,6 +57,7 @@ if (not dying) {
 		audio_play_sound(snd_hornet_flourish, 10, false);
 		audio_stop_sound(snd_background2);
 		audio_play_sound(snd_hornet_background, 10, true);
+		gamepad_set_vibration(0, .5, .5);
 	}
 	
 	if (sprite_index == spr_hornet_flourish and animation_end()) {
@@ -67,6 +68,7 @@ if (not dying) {
 		ready_to_counter = true;
 		ready_to_dash = true;
 		ready_to_sphere = true;
+		gamepad_set_vibration(0, 0, 0);
 	}
 	
 	if (fighting and ready_to_dash and (x < dash_left or x > dash_right) and not countering and not sphering) {

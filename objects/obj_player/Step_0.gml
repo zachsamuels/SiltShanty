@@ -34,6 +34,8 @@ if (place_meeting(x, y + vsp, obj_block)) {
 	if (not landing and falling) {
 		falling = false;
 		landing = true;
+		gamepad_set_vibration(0, .5, .5);
+		alarm[2] = game_get_speed(gamespeed_fps) * .1;
 		sprite_index = spr_player_land;	
 		image_index = 0;
 		audio_play_sound(snd_land, 10, false);
@@ -75,6 +77,8 @@ if not (global.freeze_game) {
 			image_alpha = .8
 			alarm[1] = game_get_speed(gamespeed_fps) * 2;
 			audio_play_sound(snd_damage_player, 10, false);
+			gamepad_set_vibration(0, .75, .75);
+			alarm[2] = game_get_speed(gamespeed_fps) * .2;
 			sprite_index = spr_player_hurt;
 			vsp = -14;
 			
@@ -158,6 +162,8 @@ if not (global.freeze_game) {
 			lastdir = moving;
 			if(keyspace != 0){
 				attacking = true;
+				gamepad_set_vibration(0, .5, .5);
+				alarm[2] = game_get_speed(gamespeed_fps) * .05;
 				if(keydown == 0){
 					sprite_index = spr_player_atk;
 					if(-lastdir < 0){
@@ -175,6 +181,8 @@ if not (global.freeze_game) {
 			}
 		} else {
 			if(keyspace != 0){
+				gamepad_set_vibration(0, .5, .5);
+				alarm[2] = game_get_speed(gamespeed_fps) * .05;
 				attacking = true;
 				if(keydown == 0){
 					sprite_index = spr_player_atk;
