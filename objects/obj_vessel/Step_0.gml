@@ -11,10 +11,12 @@ if (hp <= 0 and not dying) {
 	dying = true;
 	sprite_index = spr_vessel_death_start;
 	audio_play_sound(snd_vessel_last_hit, 10, false);
+	audio_stop_sound(snd_vessel_background);
 	image_index = 0;
 }
 
 if (dying and sprite_index == spr_vessel_death_start and animation_end()) {
+	audio_play_sound(snd_vessel_death, 10, false);
 	
 	death_shake = true;
 	cam_original_x = camera_get_view_x(view_camera[0]);
@@ -26,6 +28,10 @@ if (dying and sprite_index == spr_vessel_death_start and animation_end()) {
 
 if (death_shake) {
 	if (shake_duration > 0) {
+		if (shake_duration% 10) == 0 {
+			var overhead = instance_create_layer(x, y, "Instances", obj_infection);
+			overhead.image_angle = shake_duration*6;
+		}
 		var _shakeX = irandom_range(-shake_intensity, shake_intensity);
 		var _shakeY = irandom_range(-shake_intensity, shake_intensity);
 
@@ -48,6 +54,7 @@ if (dying and sprite_index == spr_vessel_death and animation_end()) {
 	dead = true;
 	camera_set_view_border(view_camera[0], 500, 300)
 	audio_play_sound(snd_background2, 10, true);
+	
 }
 
 if (not dying) {
@@ -68,6 +75,7 @@ if (not dying) {
 		global.freeze_game = true;
 		sprite_index = spr_vessel_wake_1;
 		audio_stop_sound(snd_background);
+		audio_play_sound(snd_vessel_background, 10, true);
 	}
 
 	if (sprite_index == spr_vessel_wake_1 and animation_end()) {
@@ -137,6 +145,9 @@ if (not dying) {
 		sprite_index = spr_vessel_overhead;
 		image_index = 0;
 		var overhead = instance_create_layer(x, y, "Instances", obj_overhead);
+		audio_play_sound(snd_vessel_sword, 10, false);
+		alarm[3] = game_get_speed(gamespeed_fps) * .5
+		make_overhead = true;
 	}
 
 	if (sprite_index == spr_vessel_overhead) {
@@ -160,7 +171,9 @@ if (not dying) {
 			sprite_index = spr_vessel_overhead_end;
 			image_index = 0;
 			overhead_num = 0;
+			make_overhead = false;
 			instance_destroy(instance_find(obj_overhead, 0), false);
+			audio_stop_sound(snd_vessel_sword);
 		}
 	} 
 
@@ -178,10 +191,12 @@ if (not dying) {
 		jumping = true;
 		sprite_index = spr_vessel_jump_start;
 		image_index = 0;
+		audio_play_sound(snd_vessel_down_start, 10, false);
 	}
 
 
 	if (sprite_index == spr_vessel_jump_start and animation_end()) {
+		audio_play_sound(snd_vessel_jump, 10, false);
 		sprite_index = spr_vessel_jump;
 		image_index = 0;
 		vsp = -30;
@@ -207,7 +222,7 @@ if (not dying) {
 	}
 
 	vsp += .9;
-
+	
 	if (y + vsp > original_y) {
 		// Im going to hit the block so move to block
 		while (not y + sign(vsp) >= original_y) {
@@ -231,6 +246,7 @@ if (not dying) {
 
 	if (ready_to_land and y + 30 >= original_y) {
 		ready_to_land = false;
+		audio_play_sound(snd_vessel_downstab, 10, false);
 		sprite_index = spr_vessel_downstab;
 		image_index = 0;
 		var downstab = instance_create_layer(x, y, "Instances", obj_downstab);

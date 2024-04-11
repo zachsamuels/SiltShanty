@@ -29,5 +29,11 @@ ready_to_land = false;
 dying = false;
 death_shake = false;
 dead = false;
-left = 1150;
-right = 2300;
+if (room == Room1) {
+	left = 1150;
+	right = 2300;
+} else if (room == Level1) {
+	left = 2050;
+	right = 3200
+}
+make_overhead = false;
