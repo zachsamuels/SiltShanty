@@ -28,9 +28,9 @@ if (dying and sprite_index == spr_vessel_death_start and animation_end()) {
 
 if (death_shake) {
 	if (shake_duration > 0) {
-		if (shake_duration% 10) == 0 {
-			var overhead = instance_create_layer(x, y, "Instances", obj_infection);
-			overhead.image_angle = shake_duration*6;
+		if (shake_duration% 15) == 0 {
+			var infection = instance_create_layer(x, y, "Instances", obj_infection);
+			infection.image_angle = shake_duration*6;
 		}
 		var _shakeX = irandom_range(-shake_intensity, shake_intensity);
 		var _shakeY = irandom_range(-shake_intensity, shake_intensity);
@@ -49,11 +49,14 @@ if (death_shake) {
 	}
 }
 
-if (dying and sprite_index == spr_vessel_death and animation_end()) {
+if (dying and sprite_index == spr_vessel_death and animation_end() and not dead) {
 	image_speed = 0;
 	dead = true;
 	camera_set_view_border(view_camera[0], 500, 300)
 	audio_play_sound(snd_background2, 10, true);
+	var monarch = instance_create_layer(obj_player.x, y-500, "Instances", obj_monarch_wings);
+	monarch.image_xscale = .3;
+	monarch.image_yscale = .3;
 	
 }
 
