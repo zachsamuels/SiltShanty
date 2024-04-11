@@ -103,6 +103,7 @@
     {"name":"spr_hornet_counter_start","order":69,"path":"sprites/spr_hornet_counter_start/spr_hornet_counter_start.yy",},
     {"name":"spr_hornet_dash_start","order":62,"path":"sprites/spr_hornet_dash_start/spr_hornet_dash_start.yy",},
     {"name":"spr_player_jump","order":11,"path":"sprites/spr_player_jump/spr_player_jump.yy",},
+    {"name":"obj_atk_up","order":29,"path":"objects/obj_atk_up/obj_atk_up.yy",},
     {"name":"obj_splash","order":25,"path":"objects/obj_splash/obj_splash.yy",},
     {"name":"obj_dash","order":13,"path":"objects/obj_dash/obj_dash.yy",},
     {"name":"snd_vessel_death","order":40,"path":"sounds/snd_vessel_death/snd_vessel_death.yy",},

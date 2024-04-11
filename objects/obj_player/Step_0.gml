@@ -52,10 +52,6 @@ if (place_meeting(x, y + vsp, obj_block)) {
 	}
 }
 
-if(attacking and animation_end()){
-	attacking = false;
-}
-
 
 
 if (landing) {
@@ -99,13 +95,12 @@ if not (global.freeze_game) {
 			var moving = -1;
 		}
 		var up_down = gamepad_axis_value(0, gp_axislv);
-		if (up_down == 0) {
-			var keyup = 0;
-			var keydown = 0;
-		} else if (up_down > 0) {
+		var keyup = 0;
+		var keydown = 0
+		if (up_down > deadzone) {
 			var keyup = 0;
 			var keydown = 1;
-		} else {
+		} else if (up_down < -deadzone) {
 			var keyup = 1;
 			var keydown = 0;
 		}
@@ -160,49 +155,38 @@ if not (global.freeze_game) {
 			sprite_index = spr_player_run;
 			image_xscale = moving * 1.3;
 			lastdir = moving;
-			if(keyspace != 0){
-				attacking = true;
-				gamepad_set_vibration(0, .5, .5);
-				alarm[2] = game_get_speed(gamespeed_fps) * .05;
-				if(keydown == 0){
-					sprite_index = spr_player_atk;
-					if(-lastdir < 0){
-						attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
-					}
-					else{
-						attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
-					}
-					attack.image_xscale = -lastdir;
-				} else if (keydown == 1 and !grounded){
-					sprite_index = spr_player_atk_down;
-					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
-					
-				}
-			}
-		} else {
-			if(keyspace != 0){
-				gamepad_set_vibration(0, .5, .5);
-				alarm[2] = game_get_speed(gamespeed_fps) * .05;
-				attacking = true;
-				if(keydown == 0){
-					sprite_index = spr_player_atk;
-					if(-lastdir < 0){
-						attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
-					}
-					else{
-						attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
-					}
-					attack.image_xscale = -lastdir;
-				} else if (keydown == 1 and !grounded){
-					sprite_index = spr_player_atk_down;
-					attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
-					
-				}
-			}
-			else if (not jumping and grounded) {
-				sprite_index = spr_player_idle;
-			}
+		}else if (not jumping and grounded) {
+			sprite_index = spr_player_idle;
 		}
+			if(keyspace != 0 and not attacking){
+				attacking = true;
+				gamepad_set_vibration(0, .5, .5);
+				alarm[2] = game_get_speed(gamespeed_fps) * .05;
+				if(keydown == 0 and keyup == 0){
+					if (not instance_exists(obj_atk)) {
+						sprite_index = spr_player_atk;
+						if(-lastdir < 0){
+							attack = instance_create_layer(x + 40, y, "Instances", obj_atk);
+						}
+						else{
+							attack = instance_create_layer(x - 40, y, "Instances", obj_atk);
+						}
+						attack.image_xscale = -lastdir;
+					}
+				} else if (keydown == 1 and !grounded){
+					if (not instance_exists(obj_atk_down)) {
+						sprite_index = spr_player_atk_down;
+						attack = instance_create_layer(x, y + 100, "Instances", obj_atk_down);
+					}
+					
+				} else if (keyup == 1){
+					if (not instance_exists(obj_atk_up)) {
+						attack = instance_create_layer(x + 20, y - 50, "Instances", obj_atk_up);
+					}
+					
+				}
+				alarm[3] = game_get_speed(gamespeed_fps) * .4
+			} 
 	}
 
 	//Make bool variable for attacking and check if atk is at last frame before changing back

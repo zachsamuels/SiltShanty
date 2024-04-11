@@ -27,6 +27,7 @@ has_double_jump = false;
 sound_distance = 1000;
 run_start = false;
 death_sound = false;
+deadzone = .4;
 if (gamepad_is_connected(0)) {
 		gamepad_set_axis_deadzone(0, .2);
 }

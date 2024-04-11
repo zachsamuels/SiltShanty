@@ -76,6 +76,7 @@ if (not dying) {
 	if (in_viewport and not awake) {
 		awake = true;
 		global.freeze_game = true;
+		obj_player.sprite_index = spr_player_idle;
 		sprite_index = spr_vessel_wake_1;
 		audio_stop_sound(snd_background);
 		audio_play_sound(snd_vessel_background, 10, true);

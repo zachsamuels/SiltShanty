@@ -122,6 +122,7 @@
     {"id":{"name":"spr_hornet_counter_start","path":"sprites/spr_hornet_counter_start/spr_hornet_counter_start.yy",},},
     {"id":{"name":"spr_hornet_dash_start","path":"sprites/spr_hornet_dash_start/spr_hornet_dash_start.yy",},},
     {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},},
+    {"id":{"name":"obj_atk_up","path":"objects/obj_atk_up/obj_atk_up.yy",},},
     {"id":{"name":"obj_splash","path":"objects/obj_splash/obj_splash.yy",},},
     {"id":{"name":"obj_dash","path":"objects/obj_dash/obj_dash.yy",},},
     {"id":{"name":"snd_vessel_death","path":"sounds/snd_vessel_death/snd_vessel_death.yy",},},
