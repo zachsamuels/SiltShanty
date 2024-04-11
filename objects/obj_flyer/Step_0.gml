@@ -6,6 +6,7 @@
 
 if (dying and animation_end()) {
 	instance_destroy(id, true);
+	audio_stop_sound(snd_flyer);
 } else if (not dying) {
 	var player = instance_find(obj_player, 0);
 
@@ -22,10 +23,13 @@ if (dying and animation_end()) {
 	}
 
 	if (collision_line(x, y, player.x, player.y, obj_block, false, true) == noone and not firing and can_fire) {
-		firing = true;
-		can_fire = false;
-		sprite_index = spr_flyer_fire;
-		image_index = 0;
+					
+		if (y < 768+camera_get_view_y(view_camera[0])-sprite_height/2 and y > camera_get_view_y(view_camera[0])+sprite_height/2 and x < 1366+camera_get_view_x(view_camera[0])-sprite_width/2 and x > camera_get_view_x(view_camera[0])+sprite_width/2) {
+			firing = true;
+			can_fire = false;
+			sprite_index = spr_flyer_fire;
+			image_index = 0;
+		}
 	}
 
 	if (firing and animation_end()) {
