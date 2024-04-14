@@ -48,7 +48,6 @@
     {"name":"spr_hornet_counter_hit","order":72,"path":"sprites/spr_hornet_counter_hit/spr_hornet_counter_hit.yy",},
     {"name":"spr_hornet_wounded","order":66,"path":"sprites/spr_hornet_wounded/spr_hornet_wounded.yy",},
     {"name":"spr_vessel_jump","order":38,"path":"sprites/spr_vessel_jump/spr_vessel_jump.yy",},
-    {"name":"Level1","order":1,"path":"rooms/Level1/Level1.yy",},
     {"name":"spr_hornet_counter_failed","order":71,"path":"sprites/spr_hornet_counter_failed/spr_hornet_counter_failed.yy",},
     {"name":"obj_atk","order":5,"path":"objects/obj_atk/obj_atk.yy",},
     {"name":"spr_player_fall","order":12,"path":"sprites/spr_player_fall/spr_player_fall.yy",},

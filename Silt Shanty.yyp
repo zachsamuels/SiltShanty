@@ -67,7 +67,6 @@
     {"id":{"name":"spr_hornet_counter_hit","path":"sprites/spr_hornet_counter_hit/spr_hornet_counter_hit.yy",},},
     {"id":{"name":"spr_hornet_wounded","path":"sprites/spr_hornet_wounded/spr_hornet_wounded.yy",},},
     {"id":{"name":"spr_vessel_jump","path":"sprites/spr_vessel_jump/spr_vessel_jump.yy",},},
-    {"id":{"name":"Level1","path":"rooms/Level1/Level1.yy",},},
     {"id":{"name":"spr_hornet_counter_failed","path":"sprites/spr_hornet_counter_failed/spr_hornet_counter_failed.yy",},},
     {"id":{"name":"obj_atk","path":"objects/obj_atk/obj_atk.yy",},},
     {"id":{"name":"spr_player_fall","path":"sprites/spr_player_fall/spr_player_fall.yy",},},
@@ -215,7 +214,6 @@
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"Splash","path":"rooms/Splash/Splash.yy",},},
-    {"roomId":{"name":"Level1","path":"rooms/Level1/Level1.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "templateType": "game",
