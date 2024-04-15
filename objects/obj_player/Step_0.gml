@@ -79,7 +79,8 @@ if not (global.freeze_game) {
 			vsp = -14;
 			
 		} 
-		//x += 5;
+		//hurt_x += 5;
+		//x += hurt_x;
 	}
 
 	

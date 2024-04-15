@@ -23,11 +23,12 @@ invulnerable = false;
 start_vul = false;
 dying = false;
 can_double_jump = true;
-has_double_jump = false;
+has_double_jump = true;
 sound_distance = 1000;
 run_start = false;
 death_sound = false;
 deadzone = .4;
+hurt_x = 0;
 if (gamepad_is_connected(0)) {
 		gamepad_set_axis_deadzone(0, .2);
 }
