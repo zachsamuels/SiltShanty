@@ -5,6 +5,7 @@ if(dying){
 	if (not death_sound) {
 		audio_play_sound(snd_player_death, 10, false);
 		death_sound = true;
+		alarm[4] = game_get_speed(gamespeed_fps) * 3;
 	}
 	sprite_index = spr_player_die;
 	vsp = 10;
