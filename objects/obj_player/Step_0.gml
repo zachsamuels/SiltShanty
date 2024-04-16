@@ -153,7 +153,8 @@ if not (global.freeze_game) {
 	if(!attacking){
 		if (moving != 0) {
 			sprite_index = spr_player_run;
-			image_xscale = moving * 1.3;
+			image_xscale = moving;
+			image_yscale = 1;
 			lastdir = moving;
 		}else if (not jumping and grounded) {
 			sprite_index = spr_player_idle;

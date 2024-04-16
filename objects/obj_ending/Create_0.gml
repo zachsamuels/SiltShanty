@@ -3,8 +3,8 @@
 
 
 
-
-
+audio_stop_all();
+audio_play_sound(snd_end, 10, true);
 
 
 

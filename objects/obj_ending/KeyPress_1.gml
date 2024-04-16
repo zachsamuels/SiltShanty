@@ -7,6 +7,5 @@
 
 
 
-
-game_end();
+game_end(0);
 

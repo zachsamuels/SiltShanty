@@ -8,8 +8,12 @@ global.boss_fight = true;
 global.boss = "";
 if (room == Level1) {
 	hp = 10;
+	can_double_jump = false;
+	has_double_jump = false;
 } else {
 	hp = global.hp
+	can_double_jump = true;
+	has_double_jump = true;
 }
 spd = 10;
 dmg = 1;
@@ -26,8 +30,6 @@ lastdir = 1;
 invulnerable = false;
 start_vul = false;
 dying = false;
-can_double_jump = false;
-has_double_jump = false;
 sound_distance = 1000;
 run_start = false;
 death_sound = false;

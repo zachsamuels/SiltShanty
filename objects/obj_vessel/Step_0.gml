@@ -183,7 +183,7 @@ if (not dying) {
 
 	if (sprite_index == spr_vessel_overhead_end and animation_end()) {
 		sprite_index = spr_vessel_idle;
-		alarm[0] = game_get_speed(gamespeed_fps) * 4;
+		alarm[0] = game_get_speed(gamespeed_fps) * 2;
 		overheading = false;
 	}
 

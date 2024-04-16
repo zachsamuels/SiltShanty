@@ -7,3 +7,4 @@ blinkTimer = 0;
 blinkRate = 30; 
 visible = true; 
 
+audio_play_sound(snd_splash, 10, true);

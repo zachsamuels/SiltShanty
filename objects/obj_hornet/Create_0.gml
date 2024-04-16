@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-hp = 20;
+hp = 15;
 dmg = 1;
 awake = false;
 dying = false;

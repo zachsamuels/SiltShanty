@@ -7,7 +7,7 @@
 spd = 2;
 hsp = 0;
 vsp = 0
-hp = 3;
+hp = 15;
 dmg = 1;
 awake = false;
 shake_duration = 90;
