@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+global.hp = hp;
 if(dying){
 	if (not death_sound) {
 		audio_play_sound(snd_player_death, 10, false);
@@ -108,9 +109,6 @@ if not (global.freeze_game) {
 		}
 		var keyspace = gamepad_button_check_pressed(0, gp_face3);
 		var controller_jump = gamepad_button_check_pressed(0, gp_face1);
-		if (gamepad_button_check_pressed(0, gp_shoulderl)) {
-			has_double_jump = true;
-		}
 		if (controller_jump) {
 			if ((grounded or (can_double_jump and has_double_jump)) and not global.freeze_game and !dying) {
 				if (not grounded) {

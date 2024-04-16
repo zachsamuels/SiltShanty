@@ -6,7 +6,11 @@
 global.freeze_game = false;
 global.boss_fight = true;
 global.boss = "";
-hp = 10;
+if (room == Level1) {
+	hp = 10;
+} else {
+	hp = global.hp
+}
 spd = 10;
 dmg = 1;
 hsp = 0;
@@ -23,7 +27,7 @@ invulnerable = false;
 start_vul = false;
 dying = false;
 can_double_jump = false;
-has_double_jump = true;
+has_double_jump = false;
 sound_distance = 1000;
 run_start = false;
 death_sound = false;
