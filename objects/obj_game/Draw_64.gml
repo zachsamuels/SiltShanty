@@ -16,7 +16,11 @@ if(instance_exists(obj_player)){
 }
 
 if(room == Level1){
-	draw_text(440, 3550, "Left & Right Arrows/ Left Stick to Move");
+	draw_text(10, 100, "Left & Right Arrows/ Left Stick to Move");
+	draw_text(10, 118, "Space/ A to Jump");
+	draw_text(10, 136, "C/ X to Attack");
+	draw_text(10, 154, "Up & Down Arrows/ Left Stick to Aim Attack");
+	
 }
 
 
