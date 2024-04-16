@@ -15,6 +15,9 @@ if(instance_exists(obj_player)){
 	}
 }
 
+if(room == Level1){
+	draw_text(440, 3550, "Left & Right Arrows/ Left Stick to Move");
+}
 
 
 
